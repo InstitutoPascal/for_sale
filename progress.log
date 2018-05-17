@@ -4,3 +4,6 @@
 [2018-05-16 21:06:51] CREATE prueba/comienzo.html: 0
 [2018-05-16 21:07:39] DELETE for_sale/views/prueba/comienzo.html: -3
 [2018-05-16 21:10:57] CREATE prueba/comienzo.html: 0
+[2018-05-16 21:33:01] CREATE lista.py: 0
+[2018-05-16 21:33:44] EDIT for_sale/controllers/lista.py: 1
+[2018-05-16 21:33:44] EDIT for_sale/controllers/lista.py: 0
