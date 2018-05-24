@@ -1,5 +1,4 @@
 {{extend 'layout.html'}}
-
 {{block header}}
 <center style="background-color: #333; color:white; padding:30px">
   <h1>/{{=request.application}}/{{=request.controller}}/{{=request.function}}
@@ -38,6 +37,3 @@
 {{else:}}
 {{=BEAUTIFY(response._vars)}}
 {{pass}}
-
-
-
