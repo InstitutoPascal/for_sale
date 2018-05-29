@@ -1,3 +1,94 @@
 {{extend 'layout.html'}}
-<h1>This is the registro/clientes.html template</h1>
-{{=BEAUTIFY(response._vars)}}
+
+<div class="row">
+    <div class="col-md-4">
+    Razón Social:
+    </div>
+    <div class="col-md-8">
+        <input name=-"razonsocial"> 
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-4">
+    Nombre:
+    </div>
+    <div class="col-md-8">
+        <input name=-"Nombre">
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-4">
+    Apellido:
+    </div>
+    <div class="col-md-8">
+         <input name=-"Apellido">
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-4">
+    D.N.I:
+    </div>
+    <div class="col-md-8">
+        <input name=-"dni">
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-4">
+    Dirección:
+    </div>
+    <div class="col-md-8">
+        <input name=-"direccion">
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-4">
+    Localidad:
+    </div>
+    <div class="col-md-8">
+        <input name=-"localidad">
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-4">
+    Provincia:
+    </div>
+    <div class="col-md-8">
+        <input name=-"provincia">
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-4">
+    Teléfono:
+    </div>
+    <div class="col-md-8">
+        <input name=-"Telefono">
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-4">
+    Email:
+    </div>
+    <div class="col-md-8">
+        
+        <input name=-"Email">
+        <label class="sr-only" for="email">Email address:</label>
+    </div>
+</div>
+<br>
+<button type="button" class="btn btn-warning">Finalizar</button>
