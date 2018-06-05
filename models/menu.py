@@ -2,49 +2,128 @@
 # this file is released under public domain and you can use without limitations
 
 # ----------------------------------------------------------------------------------------------------------------------
+# Customize your APP title, subtitle and menus here
+# ----------------------------------------------------------------------------------------------------------------------
+
+response.logo = A(B('Adminwebpro'), XML('&trade;&nbsp;'),
+                  _class="navbar-brand", _href="/adminwebpro/default/index",
+                  _id="web2py-logo")
+response.title = request.application.replace('_', ' ').title()
+response.subtitle = ''
+
+# ----------------------------------------------------------------------------------------------------------------------
+# read more at http://dev.w3.org/html5/markup/meta.name.html
+# ----------------------------------------------------------------------------------------------------------------------
+response.meta.author = myconf.get('app.author')
+response.meta.description = myconf.get('app.description')
+response.meta.keywords = myconf.get('app.keywords')
+response.meta.generator = myconf.get('app.generator')
+
+# ----------------------------------------------------------------------------------------------------------------------
+# your http://google.com/analytics id
+# ----------------------------------------------------------------------------------------------------------------------
+response.google_analytics_id = None
+
+# ----------------------------------------------------------------------------------------------------------------------
 # this is the main application menu add/remove items as required
 # ----------------------------------------------------------------------------------------------------------------------
-
+#Agregando mi menu
 response.menu = [
-    (T('Home'), False, URL('default', 'index'), [])
+
+    (T('Compras'), False, URL('compra', 'index'), [
+        (T('Proveedor'), False, URL('compra','abm_proveedor'),[]),
+        (T('Formulario Orden Compra'), False, URL('compra','formulario_orden_compras'),[]),
+        (T('Formulario Compras'), False, URL('compra','formulario_compras'),[]),
+        (T('Reporte Subdiario'), False, URL('compra','informe_subdiarioa'),[]),
+        (T('Reporte Proveedor'), False, URL('compra','listado_proveedor'),[]),
+        ]),
+    (T('Stock'), False, URL('stock', 'index'), [
+        (T('Reporte'), False, URL('stock', 'reporte_stock'), []),
+        (T('ABM Producto'), False, URL('stock', 'abm_producto'), []),
+        (T('Deposito nuevo'), False, URL('stock', 'alta_deposito'), []),
+        (T('Generacion de remito'), False, URL('stock','entradas_pendientes'),[]),
+        (T('Recepcion de remito'), False, URL('stock', 'resepcion_remito'), []),
+        ]),
+    (T('Pagos'), False, URL('pagos', 'index'), [
+        (T('ABM Bancos'), False, URL('pagos', 'alta_bancos'), []),
+        (T('ABM Cuentabancaria'), False, URL('pagos', 'alta_cuenta_bancaria'), []),
+        (T('Generar Orden de Pago'), False, URL('pagos', 'buscar_proveedor'), []),
+        (T('Generar Reporte'), False, URL('pagos', 'generar_reporte'), []),
+        ]),
+    (T('Ventas'), False, URL('ventas', 'index'), [
+        (T('Clientes'), False, URL('ventas', 'abm_clientes'), []),
+        (T('Factura'), False, URL('ventas', 'abm_ventas'), []),
+        (T('Reporte de ventas'), False, URL('ventas', 'reporte_ventas'), []),
+        (T('Reporte de ventas por Cliente'), False, URL('ventas', 'reporte_por_cliente'), []),
+        ]),
+    (T('Cobranzas'), False, '#', [
+        #(T('Autorizar Cobro'), False, URL('ordencobro', 'autorizar_cobro'), []),
+        #(T('Cheques'), False, URL('ordencobro', 'abm_cheques'), []),
+        (T('Cobrar'), False, URL('ordencobro', 'generar_orden_cobro'), []),
+        (T('Reporte Cobros'), False, URL('ordencobro', 'reporte_cobros'), []),
+        (T('Formas de pago'), False, URL('ordencobro', 'forma_pago'), []),
+        ]),	
+    (T('Sueldos'), False, URL('sueldos', 'index'), [
+         (T('ABM Empleados'), False, URL('sueldos', 'abm_empleados'), []),
+         (T('ABM Familiares'), False, URL('sueldos', 'abm_familiares'), []),
+         (T('ABM Horas'), False, URL('sueldos', 'abm_horas'), []),
+         (T('Reporte Legajos'), False, URL('sueldos', 'reportes_empleados2'), []),
+          (T('Reporte Horas'), False, URL('sueldos', 'reportes_horas2'), []),
+          (T('Reporte Familiares'), False, URL('sueldos', 'reportes_familiares2'), []),
+         (T('Formulario Legajos'), False, URL('sueldos', 'legajos'), []),
+         (T('Formulario Familiares'), False, URL('sueldos', 'familiar'), []),
+         # (T('Reporte Horas'), False, URL('sueldos', 'reportes_horas'), []),
+           (T('Formulario Horas'), False, URL('sueldos', 'horas'), []), 
+        ]),
 ]
 
+DEVELOPMENT_MENU = False
+
+
 # ----------------------------------------------------------------------------------------------------------------------
-# provide shortcuts for development. you can remove everything below in production
+# provide shortcuts for development. remove in production
 # ----------------------------------------------------------------------------------------------------------------------
 
-if not configuration.get('app.production'):
-    _app = request.application
+def _():
+    # ------------------------------------------------------------------------------------------------------------------
+    # shortcuts
+    # ------------------------------------------------------------------------------------------------------------------
+    app = request.application
+    ctr = request.controller
+    # ------------------------------------------------------------------------------------------------------------------
+    # useful links to internal and external resources
+    # ------------------------------------------------------------------------------------------------------------------
     response.menu += [
         (T('My Sites'), False, URL('admin', 'default', 'site')),
         (T('This App'), False, '#', [
-            (T('Design'), False, URL('admin', 'default', 'design/%s' % _app)),
+            (T('Design'), False, URL('admin', 'default', 'design/%s' % app)),
+            LI(_class="divider"),
             (T('Controller'), False,
              URL(
-                 'admin', 'default', 'edit/%s/controllers/%s.py' % (_app, request.controller))),
+                 'admin', 'default', 'edit/%s/controllers/%s.py' % (app, ctr))),
             (T('View'), False,
              URL(
-                 'admin', 'default', 'edit/%s/views/%s' % (_app, response.view))),
+                 'admin', 'default', 'edit/%s/views/%s' % (app, response.view))),
             (T('DB Model'), False,
              URL(
-                 'admin', 'default', 'edit/%s/models/db.py' % _app)),
+                 'admin', 'default', 'edit/%s/models/db.py' % app)),
             (T('Menu Model'), False,
              URL(
-                 'admin', 'default', 'edit/%s/models/menu.py' % _app)),
+                 'admin', 'default', 'edit/%s/models/menu.py' % app)),
             (T('Config.ini'), False,
              URL(
-                 'admin', 'default', 'edit/%s/private/appconfig.ini' % _app)),
+                 'admin', 'default', 'edit/%s/private/appconfig.ini' % app)),
             (T('Layout'), False,
              URL(
-                 'admin', 'default', 'edit/%s/views/layout.html' % _app)),
+                 'admin', 'default', 'edit/%s/views/layout.html' % app)),
             (T('Stylesheet'), False,
              URL(
-                 'admin', 'default', 'edit/%s/static/css/web2py-bootstrap3.css' % _app)),
-            (T('Database'), False, URL(_app, 'appadmin', 'index')),
+                 'admin', 'default', 'edit/%s/static/css/web2py-bootstrap3.css' % app)),
+            (T('Database'), False, URL(app, 'appadmin', 'index')),
             (T('Errors'), False, URL(
-                'admin', 'default', 'errors/' + _app)),
+                'admin', 'default', 'errors/' + app)),
             (T('About'), False, URL(
-                'admin', 'default', 'about/' + _app)),
+                'admin', 'default', 'about/' + app)),
         ]),
         ('web2py.com', False, '#', [
             (T('Download'), False,
@@ -64,6 +143,7 @@ if not configuration.get('app.production'):
         ]),
         (T('Documentation'), False, '#', [
             (T('Online book'), False, 'http://www.web2py.com/book'),
+            LI(_class="divider"),
             (T('Preface'), False,
              'http://www.web2py.com/book/default/chapter/00'),
             (T('Introduction'), False,
@@ -108,3 +188,9 @@ if not configuration.get('app.production'):
         ]),
     ]
 
+
+if DEVELOPMENT_MENU:
+    _()
+
+if "auth" in locals():
+    auth.wikimenu()
