@@ -239,3 +239,6 @@
 [2018-06-05 18:45:49] CREATE db_prueba.py: 0
 [2018-06-05 18:46:47] EDIT for_sale/models/db_prueba.py: 24
 [2018-06-05 18:47:56] CREATE db_stock.py: 0
+[2018-06-05 18:49:53] EDIT for_sale/models/db_stock.py: 30
+[2018-06-05 18:50:27] CREATE db_sueldos.py: 0
+[2018-06-05 18:51:28] EDIT for_sale/models/db_sueldos.py: 113
