@@ -235,3 +235,5 @@
 [2018-06-05 18:42:23] CREATE db_compras.py: 0
 [2018-06-05 18:43:43] EDIT for_sale/models/db_compras.py: 23
 [2018-06-05 18:44:14] CREATE db_pagos.py: 0
+[2018-06-05 18:45:11] EDIT for_sale/models/db_pagos.py: 48
+[2018-06-05 18:45:49] CREATE db_prueba.py: 0
