@@ -1,19 +1,7 @@
 # -*- coding: utf-8 -*-
 
-# -------------------------------------------------------------------------
-# AppConfig configuration made easy. Look inside private/appconfig.ini
-# Auth is for authenticaiton and access control
-# -------------------------------------------------------------------------
-from gluon.contrib.appconfig import AppConfig
-from gluon.tools import Auth
-
-# -------------------------------------------------------------------------
-# This scaffolding model makes your app work on Google App Engine too
-# File is released under public domain and you can use without limitations
-# -------------------------------------------------------------------------
-
-if request.global_settings.web2py_version < "2.15.5":
-    raise HTTP(500, "Requires web2py 2.15.5 or newer")
+if request.global_settings.web2py_version < "2.14.1":
+    raise HTTP(500, "Requires web2py 2.13.3 or newer")
 
 # -------------------------------------------------------------------------
 # if SSL/HTTPS is properly configured and you want all HTTP requests to
@@ -22,18 +10,28 @@ if request.global_settings.web2py_version < "2.15.5":
 # request.requires_https()
 
 # -------------------------------------------------------------------------
+# app configuration made easy. Look inside private/appconfig.ini
+# -------------------------------------------------------------------------
+from gluon.contrib.appconfig import AppConfig
+
+# -------------------------------------------------------------------------
 # once in production, remove reload=True to gain full speed
 # -------------------------------------------------------------------------
-configuration = AppConfig(reload=True)
+myconf = AppConfig(reload=True)
 
 if not request.env.web2py_runtime_gae:
     # ---------------------------------------------------------------------
     # if NOT running on Google App Engine use SQLite or other DB
     # ---------------------------------------------------------------------
-    db = DAL(configuration.get('db.uri'),
-             pool_size=configuration.get('db.pool_size'),
-             migrate_enabled=configuration.get('db.migrate'),
-             check_reserved=['all'])
+    db = DAL('sqlite://storage.sqlite')
+    ##db = DAL("postgres://web2py:Curso2014@localhost:5432/adminwebpro",
+    ##         migrate_enabled=True, pool_size=10)
+    migrate = True # you can control migration per define_table
+    # Comentado el 01 09 2016
+    # db = DAL(myconf.get('db.uri'),
+    #          pool_size=myconf.get('db.pool_size'),
+    #          migrate_enabled=myconf.get('db.migrate'),
+    #          check_reserved=['all'])
 else:
     # ---------------------------------------------------------------------
     # connect to Google BigTable (optional 'google:datastore://namespace')
@@ -54,15 +52,12 @@ else:
 # by default give a view/generic.extension to all actions from localhost
 # none otherwise. a pattern can be 'controller/function.extension'
 # -------------------------------------------------------------------------
-response.generic_patterns = [] 
-if request.is_local and not configuration.get('app.production'):
-    response.generic_patterns.append('*')
-
+response.generic_patterns = ['*'] if request.is_local else []
 # -------------------------------------------------------------------------
 # choose a style for forms
 # -------------------------------------------------------------------------
-response.formstyle = 'bootstrap4_inline'
-response.form_label_separator = ''
+response.formstyle = myconf.get('forms.formstyle')  # or 'bootstrap3_stacked' or 'bootstrap2' or other
+response.form_label_separator = myconf.get('forms.separator') or ''
 
 # -------------------------------------------------------------------------
 # (optional) optimize handling of static files
@@ -85,24 +80,27 @@ response.form_label_separator = ''
 # (more options discussed in gluon/tools.py)
 # -------------------------------------------------------------------------
 
+from gluon.tools import Auth, Service, PluginManager
+
 # host names must be a list of allowed host names (glob syntax allowed)
-auth = Auth(db, host_names=configuration.get('host.names'))
+auth = Auth(db, host_names=myconf.get('host.names'))
+service = Service()
+plugins = PluginManager()
 
 # -------------------------------------------------------------------------
-# create all tables needed by auth, maybe add a list of extra fields
+# create all tables needed by auth if not custom tables
 # -------------------------------------------------------------------------
-auth.settings.extra_fields['auth_user'] = []
 auth.define_tables(username=False, signature=False)
 
 # -------------------------------------------------------------------------
 # configure email
 # -------------------------------------------------------------------------
 mail = auth.settings.mailer
-mail.settings.server = 'logging' if request.is_local else configuration.get('smtp.server')
-mail.settings.sender = configuration.get('smtp.sender')
-mail.settings.login = configuration.get('smtp.login')
-mail.settings.tls = configuration.get('smtp.tls') or False
-mail.settings.ssl = configuration.get('smtp.ssl') or False
+mail.settings.server = 'logging' if request.is_local else myconf.get('smtp.server')
+mail.settings.sender = myconf.get('smtp.sender')
+mail.settings.login = myconf.get('smtp.login')
+mail.settings.tls = myconf.get('smtp.tls') or False
+mail.settings.ssl = myconf.get('smtp.ssl') or False
 
 # -------------------------------------------------------------------------
 # configure auth policy
@@ -110,26 +108,6 @@ mail.settings.ssl = configuration.get('smtp.ssl') or False
 auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
-
-# -------------------------------------------------------------------------  
-# read more at http://dev.w3.org/html5/markup/meta.name.html               
-# -------------------------------------------------------------------------
-response.meta.author = configuration.get('app.author')
-response.meta.description = configuration.get('app.description')
-response.meta.keywords = configuration.get('app.keywords')
-response.meta.generator = configuration.get('app.generator')
-
-# -------------------------------------------------------------------------
-# your http://google.com/analytics id                                      
-# -------------------------------------------------------------------------
-response.google_analytics_id = configuration.get('google.analytics_id')
-
-# -------------------------------------------------------------------------
-# maybe use the scheduler
-# -------------------------------------------------------------------------
-if configuration.get('scheduler.enabled'):
-    from gluon.scheduler import Scheduler
-    scheduler = Scheduler(db, heartbeat=configure.get('heartbeat'))
 
 # -------------------------------------------------------------------------
 # Define your tables below (or better in another model file) for example
@@ -152,3 +130,60 @@ if configuration.get('scheduler.enabled'):
 # after defining tables, uncomment below to enable auditing
 # -------------------------------------------------------------------------
 # auth.enable_record_versioning(db)
+
+# Tabla "Clientes"
+
+db.define_table('Clientes',
+                Field('ClienteId',length=25),
+                Field('RazonSocial',length=50,default='',label=T('Razon Social')),
+                Field('CUIT',length=13,default='9-99999999-99',label=T('CUIT')),
+                Field('Direccion',length=25,default='',label=T('Direccion')),
+                Field('PosIVAId',label=T('Posicion IVA')),
+               )
+# Validadores "Clientes"
+db.Clientes.ClienteId.requires=IS_NOT_IN_DB(db, 'Clientes.ClienteId')
+db.Clientes.CUIT.requires=IS_NOT_IN_DB(db, 'Clientes.CUIT')
+db.Clientes.ClienteId.requires=IS_NOT_EMPTY(error_message='Falta ingresar el Cod. de Cliente')
+db.Clientes.CUIT.requires=IS_NOT_EMPTY(error_message='Falta ingresar el CUIT')
+db.Clientes.RazonSocial.requires=IS_NOT_EMPTY(error_message='Falta ingresar la Razon Social')
+db.Clientes.PosIVAId.requires=IS_IN_SET(('Responsable Inscripto','Monotributo','Exento','Consumidor Final','Responsable No Inscripto'))
+
+# Tabla "DocumentosCabecera"
+db.define_table('DocumentosCabecera', 
+                Field('DocumentosId'),
+                Field('Sucursal',length=4,default='0001',label=T('Sucursal')),
+                Field('Numero',length=8,default='00000001',label=T('Numero')),
+                Field('TipoDocumento',length=3,default='REC',label=T('Tipo de Documento')),
+                Field('ClienteId',length=15,default='',label=T('Cliente')),
+                Field('SubTotal',default='0.00',label=T('SubTotal')),
+                Field('Total',default='0.00', label=T('Nombre')),
+                Field('Fecha',default='01/01/2016',label=T('Fecha')),
+                Field('PosIVAId',label=T('Posicion IVA')),
+               )
+# Validadores "DocumentosCabecera"
+db.DocumentosCabecera.DocumentosId.requires=IS_NOT_IN_DB(db, 'DocumentosCabecera.DocumentosId')
+db.DocumentosCabecera.ClienteId.requires=IS_IN_DB(db, 'Clientes.ClienteId')
+db.DocumentosCabecera.ClienteId.requires=IS_NOT_EMPTY(error_message='Falta ingresar el Cod. de Cliente')
+db.DocumentosCabecera.TipoDocumento.requires=IS_IN_SET(('FCA','FCB','REC','OPA','PAG')) # FCA=Factura A, FCB=Factura B, REC=Recibo, OPA=Orden de Pago, PAG=Pago Contrafactura
+db.DocumentosCabecera.Fecha.requires=IS_NOT_EMPTY(error_message='Falta ingresar la Fecha')
+db.DocumentosCabecera.PosIVAId.requires=IS_IN_SET(('Responsable Inscripto','Monotributo','Exento','Consumidor Final','Responsable No Inscripto'))
+
+# Tabla "DocumentosDetalle"
+db.define_table('DocumentosDetalle', 
+                Field('DocumentosDetalleId'),
+                Field('DocumentosId'),
+                Field('ProductoId',length=25,label=T('Cod. Producto')),
+                Field('Descripcion',label=T('Descripcion')),
+                Field('Cantidad',default='1',label=T('Cantidad')),
+                Field('Unitario',label=T('Precio Unitario')),
+                Field('Descuento',label=T('Descuento')),
+                Field('AlicuotaIVA',default='21',label=T('Alicuota IVA')),
+               )
+# Validadores "DocumentosDetalle"
+db.DocumentosDetalle.DocumentosDetalleId.requires=IS_NOT_IN_DB(db, 'DocumentosDetalle.DocumentosDetalleId')
+db.DocumentosDetalle.DocumentosId.requires=IS_IN_DB(db, 'DocumentosCabecera.DocumentosId')
+db.DocumentosDetalle.ProductoId.requires=IS_NOT_EMPTY(error_message='Falta ingresar el Cod. de Producto')
+db.DocumentosDetalle.Descripcion.requires=IS_NOT_EMPTY(error_message='Falta ingresar la Descripcion del Producto')
+db.DocumentosDetalle.Cantidad.requires=IS_NOT_EMPTY(error_message='Falta ingresar la Cantidad del Producto')
+db.DocumentosDetalle.Unitario.requires=IS_NOT_EMPTY(error_message='Falta ingresar el Precio Unitario')
+db.DocumentosDetalle.AlicuotaIVA.requires=IS_NOT_EMPTY(error_message='Falta ingresar la Alicuota IVA')
