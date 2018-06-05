@@ -10,23 +10,7 @@ def abm_clientes():
 
 #@auth.requires_login()
 def abm_ventas():
-    #importamos libreria para el formato de la fecha
-    import time
-    #genera la fecha actual
-    fecha_hoy= time.strftime("%x")
-    # definir los campos a obtener desde la base de datos:
-    campos = db.cliente.id_cliente, db.cliente.nombre_de_fantasia, db.cliente.razon_social
-    # definir la condición que deben cumplir los registros:
-    criterio = db.cliente.id_cliente>0
-    # ejecutar la consulta:
-    lista_clientes = db(criterio).select(*campos)
-    # revisar si la consulta devolvio registros:
-    if not lista_clientes:
-        mensaje = "No ha cargado clientes"
-    else:
-        mensaje = "Seleccione un cliente"
-    #redirije los valores al HTML
-    return dict(message=mensaje, lista_clientes=lista_clientes, hoy=fecha_hoy,)
+    return dict()
 
 
 #@auth.requires_login()
