@@ -231,3 +231,5 @@
 [2018-06-05 18:29:52] EDIT for_sale/models/IS_CUIT.py: 33
 [2018-06-05 18:35:51] EDIT for_sale/models/db.py: 98
 [2018-06-05 18:37:09] CREATE db_cobranzas.py: 0
+[2018-06-05 18:41:35] EDIT for_sale/models/db_cobranzas.py: 3
+[2018-06-05 18:42:23] CREATE db_compras.py: 0
