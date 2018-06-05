@@ -256,3 +256,6 @@
 [2018-06-05 19:08:46] CREATE sueldos.py: 0
 [2018-06-05 19:10:14] EDIT for_sale/controllers/sueldos.py: 298
 [2018-06-05 19:16:54] CREATE compra/abm_proveedor.html: 0
+[2018-06-05 19:17:48] EDIT for_sale/views/compra/abm_proveedor.html: 0
+[2018-06-05 19:19:24] CREATE compra/compra_guardada.html: 0
+[2018-06-05 19:21:33] EDIT for_sale/views/compra/compra_guardada.html: 77
