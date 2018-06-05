@@ -1,0 +1,59 @@
+{{extend 'layout.html'}}
+<h1>LISTADO DE VENTAS POR CLIENTE</h1>
+<form class="form-horizontal">
+    <div class="form-group">
+        <div class="col-md-12">
+              <table class="table table-hover">
+              <caption>Listando Desde: None Hasta: None</caption>
+          <thead>
+            <tr>
+                <th>Fecha</th>
+                <th class="">Cliente</th>
+                <th>Numero de Comprobante</th>
+                <th>Tipo de Comprobante</th>
+                <th>IVA</th>
+                <th>Importe Total</th>
+                <th>Tipo de Pago</th>
+            </tr>
+          </thead>
+        <tbody>
+            <tr>
+                <th>19/11/2016</th>
+                <td>ProductosMB - Martin Benitez </td> 
+                <td>1</td>
+                <td>A</td>
+                <td>$210</td>
+                <td>$2210</td>
+                <td>Credito</td>
+                <td><a class="btn btn-default" role="button" href="/for_sale3/ventas/vista_previa?id=1">Vista Del Comprobante</a>
+            </td></tr>
+            
+        </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group">
+    <div class="col-md-3">
+       <table class="table table-bordered">
+           <tbody>
+               <tr> <th scope="row">Cantidad de Ventas</th>
+                    <td>1</td>
+               </tr>
+               <tr> <th scope="row">Valor total del Periodo</th>
+                    <td>$2210</td>
+               </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    <div class="form-group">
+         <a href="/for_sale3/ventas/reporte_por_cliente" class="btn btn-default" role="button">Volver</a>
+    </div>
+</form>
+
+        
+      </div>
+
+      
+
+    </div>
