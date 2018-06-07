@@ -1,0 +1,83 @@
+{{extend 'layout.html'}}
+<h1>DETALLE DE VENTA</h1>
+<div class="form-group">
+    <h4>Nro. Comprobante: <i><u>1234</u></i>, Fecha: <i><u>06/06/18</u></i>,
+                 Cliente: <i><u>Lalalal - La LA SRL</u></i>, Tipo de Comprobante:<i><u>"A"</u></i>
+        </h4>
+</div>
+<form class="form-horizontal" action="/for_sale/ventas/detalle_ventas" enctype="multipart/form-data" method="POST">
+    <div class="form-group">
+        <label for="produc" class="col-sm-1 control-label">PRODUCTO</label>
+           <div class="col-sm-3">
+                <select class="form-control" id="campo_tipo" name="id_producto">
+                    
+                  <option value="1">Actron 600</option>
+                  
+                  <option value="2">Amoxicilina 500 mg</option>
+                  
+                  <option value="3">Aspirina</option>
+                  
+                </select>
+           </div>
+        <label for="cant" class="col-sm-1 control-label">CANTIDAD</label>
+           <div class="col-sm-1">
+               <input name="cantidad" class="form-control" id="cant" placeholder="Cantidad" type="number" min="1" step="1" value="1">
+            </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+             <input name="agregar_item" class="btn btn-default" value="AGREGAR ITEM" type="submit">
+        </div>
+    </div>
+</form>
+<form class="form-horizontal" action="/for_sale/ventas/confirmar" enctype="multipart/form-data" method="POST">
+    <div class="form-group">
+        <div class="col-md-10">
+          <table class="table table-hover">
+          <caption>ITEMS DE VENTA</caption>
+          <thead>
+            <tr>
+                <th>#</th>
+                <th class="">Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>SubTotal</th>
+                <th>IVA</th>
+                <th>SubTotal + IVA</th>
+                <th>Opciones</th>
+            </tr>
+          </thead>
+        <tbody>
+            
+            
+        </tbody>
+        </table>
+        </div>
+        </div>
+    <div class="form-group">
+        <div class="col-md-3">
+        <table class="table table-bordered">
+        <tbody>
+            <tr> <th scope="row">Total $:</th>
+                 <td>0</td>
+            </tr>
+        </tbody>
+        </table>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-1">
+           <input class="btn btn-default" value="Finalizar Venta" type="submit">
+        </div>
+     </div>
+</form>
+
+<pre>[]
+</pre>
+
+        
+      </div>
+
+      
+
+    </div>
