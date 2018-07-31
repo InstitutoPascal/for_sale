@@ -1,5 +1,5 @@
 {{extend 'layout.html'}}
-<h1>ingreso medicamento</h1>
+<h1>Ingreso de medicamentos</h1>
 {{extend 'layout.html'}}
 <br>
 <div class="row">
@@ -20,11 +20,13 @@
     </div>
        
 </div>
-<form action="/registrardatos.php" method="post">
-Presentacion
-<select name="Presentacion">
+  Presentacion &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<select name="Presentacion" size="1" style=" width:245px"font-size:15px; sans-serif; height:100px>
 <option value="1">Crema</option>
 <option value="2">Capsulas</option>
+<option value="3">sobresitos </option>
+<option value="4">Inyectables</option>
+<option value="6">Jarabes</option>
 </select>
 
 <div class="row">
@@ -32,7 +34,7 @@ Presentacion
     Cantidad:
     </div>
     <div class="col-md-8">
-        <input name=-"Cantidad">
+        <input name="Cantidad">
     </div>
 </div>
 
@@ -42,7 +44,7 @@ Presentacion
     Precio de compra:
     </div>
     <div class="col-md-8">
-        <input name=-"Precio de compra">
+        <input name="Precio de compra">
     </div>
 </div>
 
@@ -51,7 +53,7 @@ Presentacion
     Precio de venta:
     </div>
     <div class="col-md-8">
-        <input name=-"Precio de venta">
+        <input name="Precio de venta">
     </div>
 </div>
 
@@ -61,18 +63,16 @@ Presentacion
     Fecha vencimiento:
     </div>
     <div class="col-md-8">
-        <input name=-"Fecha de vencimiento">
+        <input name="Fecha de vencimiento">
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-    Laboratorio:
-    </div>
-    <div class="col-md-8">
-        <input name=-"Laboratorio">
-    </div>
-</div>
+Laboratorio &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<select name="Presentacion" size="1" style=" width:245px"font-size:15px; sans-serif; height:100px>
+<option value="1">Bago</option>
+<option value="2">Bayer</option>
+<option value="2">Roche</option>
+</select>
 
 
 </div>
