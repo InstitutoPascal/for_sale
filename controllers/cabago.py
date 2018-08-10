@@ -1,3 +1,4 @@
 # -*- coding: utf-8 -*-
 # try something like
-def index(): return dict(message="hello from cabago.py")
+def carritobago(): 
+    return dict(message="hello from cabago.py")
