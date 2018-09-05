@@ -2,7 +2,7 @@
 def venta_productos():
 
     # buscar todos los productos:
-    condicion = db.productos.marca == 'JoniPlast'
+    condicion = db.productos.laboratorio == 'Bayer'
     campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
     registros = db(condicion).select(*campos)
 

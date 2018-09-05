@@ -1,0 +1,31 @@
+{{extend 'layout.html'}}
+ 
+<h1> <center><p class="text-primary">Arma tu pedido</p></center></h1>  
+
+
+<div class="row">
+{{for reg in registros: }} 
+        <div class="col-xs-3 col-md-3">
+            <div class="thumbnail">
+           <div align="center"> <img class="img-responsive  center-block"   src="{{=URL(f='mostrar', args=[reg.id_producto])}}"   width="300" />  
+            <div  style="max-height: width: 300px;
+            height: 200px;
+            background-color: #eee;
+            display: inline-block;   
+           "
+            
+                <div class="caption">
+                <h3>{{=reg.nombre}}</h3>
+                <p>$ {{=reg.precio}}</p>
+        <p>
+            <input type="hidden" name="producto" value="{{=reg.id_producto}}" />
+            <input type="number" name="cantidad" value="1" />
+            <input type="submit" role="button" class="btn btn-danger btn-lg" name="comprar" value="Comprar" /><br><br>
+        </p>
+        </div>
+        </div>
+        </div>
+
+        </div>
+    {{pass}}
+        </div>

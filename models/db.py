@@ -152,20 +152,3 @@ if configuration.get('scheduler.enabled'):
 # after defining tables, uncomment below to enable auditing
 # -------------------------------------------------------------------------
 # auth.enable_record_versioning(db)
-
-
-db.define_table ('clientes',
-                 db.Field("id_clientes","id"),
-                 db.Field('codigo_cliente','integer'),
-                 db.Field('nombre','string'),
-                 db.Field('apellido','string'),
-                 db.Field('email','string'),
-                 db.Field('dni','integer',unique=True),
-                 db.Field('cuil','string'),
-                 db.Field('sexo', requires=IS_IN_SET(['Masculino', 'Femenino'])),
-                 db.Field('telefono','integer'),
-                 db.Field('direccion','string'),
-                 db.Field('localidad_cliente','string'),
-                 db.Field('provincia','string'),
-                 db.Field('codigo_postal','integer'),
-                                 )
