@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 db.define_table ('productos',
                  db.Field("id_producto","id"),  
                  #db.Field('id','integer'),

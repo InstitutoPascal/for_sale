@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 def venta_productos():
-
     # buscar todos los productos:
-    condicion = db.productos.laboratorio == 'Bayer'
-    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    condicion = db.productos.laboratorio 
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio, db.productos.laboratorio
     registros = db(condicion).select(*campos)
 
     # vista generica para pruebas:
     #response.view = "generic.html"
     return dict(registros=registros)
+
 
 def carrito():
     # obtengo los valores del formulario
