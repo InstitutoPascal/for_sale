@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*
 db.define_table ('productos',
-                 db.Field("id_producto","id"),  
+                 db.Field("id_producto","id"),
                  #db.Field('id','integer'),
                  db.Field('cantidad_prod','integer',label='Cantidad de Producto'),
-                 
                  db.Field ('nombre','string'),
+                 db.Field ('marca','string'),
                  db.Field ('laboratorio','string'),
                  db.Field('descripcion','string',label='Descripción'),
                  db.Field('presentacion','string',label='Presentación'),
@@ -17,8 +17,10 @@ db.define_table ('productos',
                  db.Field('numero_lote','integer',label='Numéro de Lote'),
                  db.Field('imagen','upload'),
                  db.Field('observaciones','text'),
-                 db.Field('alicuota_iva','float') 
+                 db.Field('alicuota_iva','float'),
+                 ##fake_migrate=True,
                  )
+
 db.productos.numero_remito.requires=IS_NOT_EMPTY(error_message='***Campo obligatorio***')
 db.productos.nombre.requires=IS_NOT_EMPTY(error_message='***Campo obligatorio***')
 db.productos.numero_lote.requires=IS_NOT_EMPTY(error_message='***Campo obligatorio***')

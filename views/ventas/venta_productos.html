@@ -1,6 +1,4 @@
 {{extend 'layout.html'}}
- 
-<h1> <center><p class="text-primary">Arma tu pedido</p></center></h1>  
 
 
 {{for i, reg in enumerate(registros): }} 
@@ -9,29 +7,39 @@
 {{pass}}
     <div class="col-xs-3 col-md-3">
             <div class="thumbnail">
-           <div align="center"> <img class="img-responsive  center-block"   src="{{=URL(f='mostrar', args=[reg.id_producto])}}"   width="300" />  
-            <div  style="max-height: width: 300px;
-            height: 230px;
+    <div align="center"> <img class="img-responsive  center-block" src="{{=URL(f='mostrar', args=[reg.id_producto])}}"             width: 100%;
+height: auto;/>   
+            <div  style=" width:300px;
+            height:230px;
             background-color: #eee;
-            display: inline-block;"
-            
+            display: inline-block;"/>
+                
+                          
                 <div class="caption">
                 <h3>{{=reg.nombre}}</h3>
                <p> {{=reg.laboratorio}}</p>
                <p>$ {{=reg.precio}}</p>
-                
+                 
                <p>
             <input type="hidden" name="producto" value="{{=reg.id_producto}}" />
             <input type="number" name="cantidad" value="1" />
             <input type="submit" role="button" class="btn btn-danger btn-lg" name="comprar" value="Comprar" /><br><br>
         </p>
+        
         </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
+     
+        
+        
+  
+ 
+
+        
+        
 {{if (i % 4) == 0:}}
-        </div>
+   </div>
+</div>         
 {{pass}}
+</div>
+</div>  
     {{pass}}
+</div>
