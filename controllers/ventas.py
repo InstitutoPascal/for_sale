@@ -45,8 +45,8 @@ def confirmar():
 def borrar_item():
     # eliminar el elemento de la lista en posicion pos
     del session["items_venta"][int(request.vars.pos)]
-    return dict()
-
+    raise redirect(URL(f="carrito"))
+    
 def mostrar():
     # obtengo el id de prodcuto desde la URL
     prod_id = request.args[0]
@@ -64,3 +64,11 @@ def mostrar():
     response.headers['Content-Type'] = formato
     # devolver al navegador el contenido de la image
     return stream
+
+def cancelar_venta():
+     if request.vars["producto"]:
+        id_prod = request.vars["producto"]
+        cantidad = request.vars["cantidad"]
+        print "este es el id", id_prod
+    
+     raise redirect(URL(f="carrito"))

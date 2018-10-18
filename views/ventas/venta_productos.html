@@ -1,45 +1,29 @@
 {{extend 'layout.html'}}
 
 
-{{for i, reg in enumerate(registros): }} 
-{{if (i % 4) == 0:}}
-<div class="row">
-{{pass}}
-    <div class="col-xs-3 col-md-3">
-            <div class="thumbnail">
-    <div align="center"> <img class="img-responsive  center-block" src="{{=URL(f='mostrar', args=[reg.id_producto])}}"             width: 100%;
-height: auto;/>   
-            <div  style=" width:300px;
-            height:230px;
-            background-color: #eee;
-            display: inline-block;"/>
-                
-                          
-                <div class="caption">
-                <h3>{{=reg.nombre}}</h3>
-               <p> {{=reg.laboratorio}}</p>
-               <p>$ {{=reg.precio}}</p>
-                 
-               <p>
+{{for reg in registros: }}
+<form class="form-horizontal" action="{{=URL(c="ventas",f="carrito")}}" enctype="multipart/form-data" method="POST">
+  <div class="col-xs-1 col-sm-1">
+    <div class="thumbnail">
+      <img class="img-responsive img-thumbnail" src="{{=URL(f='mostrar', args=[reg.id_producto])}}" style="max-height: 300px; max-width: 250px;" alt="...">
+      <div class="caption">
+        <h3>{{=reg.nombre}}</h3>
+        <p>{{=reg.precio}}</p>
+        <p>
             <input type="hidden" name="producto" value="{{=reg.id_producto}}" />
             <input type="number" name="cantidad" value="1" />
-            <input type="submit" role="button" class="btn btn-danger btn-lg" name="comprar" value="Comprar" /><br><br>
+            <input type="submit" role="button" class="btn btn-danger btn-lg" name="comprar" value="Comprar" />
         </p>
-        
-        </div>
-     
-        
-        
-  
- 
-
-        
-        
-{{if (i % 4) == 0:}}
-   </div>
-</div>         
-{{pass}}
+      </div>
+    </div>
+  </div>
 </div>
-</div>  
-    {{pass}}
+</form>
+{{pass}}
+
+<img id="myImg" src="https://www.w3schools.com/howto/img_fjords.jpg" alt="Trolltunga, Norway" width="500" height="300">
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <img class="modal-content" id="img01">
 </div>
