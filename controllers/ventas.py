@@ -1,18 +1,141 @@
 # -*- coding: utf-8 -*-
 def venta_productos():
-   
+
     # buscar todos los productos:
     condicion = db.productos.laboratorio
-    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio, db.productos.laboratorio
-    registros = db(condicion).select(*campos)
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
+
+    # vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)
+
+def venta_productoss():
+
+    # buscar todos los productos:
+    condicion = db.productos.laboratorio == 'Bayer'
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
+
+    # vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)
+
+def venta_productoelea():
+
+    # buscar todos los productos:
+    condicion = db.productos.laboratorio == 'Elea'
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
+
+    # vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)
+
+def venta_productobago():
+
+    # buscar todos los productos:
+    condicion = db.productos.laboratorio == 'Bagó'
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
 
     # vista generica para pruebas:
     #response.view = "generic.html"
     return dict(registros=registros)
 
 
+def Blister():
+    # buscar todos los productos:
+    condicion = db.productos.presentacion =='Blister'
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
+
+    # vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)
+
+def Crema():
+    # buscar todos los productos:
+    condicion = db.productos.presentacion =='Crema'
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
+
+    # vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)
+
+def Ampolla():
+    # buscar todos los productos:
+    condicion = db.productos.presentacion =='Ampolla'
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
+
+    # vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)
+
+def Efervescente():
+    # buscar todos los productos:
+    condicion = db.productos.presentacion =='Efervescente'
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
+
+    # vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)
+
+def Gotas():
+    # buscar todos los productos:
+    condicion = db.productos.presentacion =='Gotas'
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
+
+    # vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)
+
+def Grag():
+    # buscar todos los productos:
+    condicion = db.productos.presentacion =='Grag'
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
+
+    # vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)
+
+def Jarabe():
+    # buscar todos los productos:
+    condicion = db.productos.presentacion =='Jarabe'
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
+
+    # vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)
+
+def Spray():
+    # buscar todos los productos:
+    condicion = db.productos.presentacion =='Spray'
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
+
+    # vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)
+
+def Locion():
+    # buscar todos los productos:
+    condicion = db.productos.presentacion =='Loción'
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
+
+    # vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)
+
 def carrito():
-    # obtengo los valores del formulario
+      # obtengo los valores del formulario
     if request.vars["producto"]:
         id_prod = request.vars["producto"]
         cantidad = request.vars["cantidad"]
@@ -34,6 +157,7 @@ def carrito():
         session["items_venta"].append(item)
         #print"usuario ",session["vendedor_logueado"]
     return dict(items_venta=session["items_venta"])
+    
 
 def confirmar():
     #reg_cliente = db(db.clientes.id==session["id_cliente"]).select().first()
@@ -45,8 +169,8 @@ def confirmar():
 def borrar_item():
     # eliminar el elemento de la lista en posicion pos
     del session["items_venta"][int(request.vars.pos)]
-    raise redirect(URL(f="carrito"))
-    
+    return dict()
+
 def mostrar():
     # obtengo el id de prodcuto desde la URL
     prod_id = request.args[0]
@@ -65,10 +189,17 @@ def mostrar():
     # devolver al navegador el contenido de la image
     return stream
 
+def productos():
+
+    #buscar todos los productos:
+    condicion = db.productos.laboratorio
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos)
+
+    #vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)
+
 def cancelar_venta():
-     if request.vars["producto"]:
-        id_prod = request.vars["producto"]
-        cantidad = request.vars["cantidad"]
-        print "este es el id", id_prod
-    
-     raise redirect(URL(f="carrito"))
+    del session["items_venta"]
+    return dict()
