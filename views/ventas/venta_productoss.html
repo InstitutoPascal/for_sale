@@ -1,14 +1,7 @@
 {{extend 'layout.html'}}
 
+{{=BEAUTIFY(response._vars)}}
 
-<html>
-<head>
-<form action="miformulario.php" method="post" class="form-inline">
-    <input type="text" placeholder="Buscar" class="form-control mr-sm-2" />
-    <button class="btn btn-succes" type="submit">Buscar</button>
-</form></head> 
-<body>
-    
 <style>
                body::after {
                  content: "";
