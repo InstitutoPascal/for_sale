@@ -1,0 +1,22 @@
+{{extend 'layout.html'}}
+
+{{=BEAUTIFY(response._vars)}}
+{{for reg in registros: }}
+<form class="form-horizontal" action="{{=URL(c="ventas",f="carrito")}}" enctype="multipart/form-data" method="POST">
+  <div class="col-xs-1 col-sm-1">
+    <div class="thumbnail">
+      <img class="img-responsive img-thumbnail" src="{{=URL(f='mostrar', args=[reg.id_producto])}}" style="max-height: 300px; max-width: 250px;" alt="...">
+      <div class="caption">
+        <h3>{{=reg.nombre}}</h3>
+        <p>{{=reg.precio}}</p>
+        <p>
+            <input type="hidden" name="producto" value="{{=reg.id_producto}}" />
+            <input type="number" name="cantidad" value="1" />
+            <input type="submit" role="button" class="btn btn-danger btn-lg" name="comprar" value="Comprar" />
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+{{pass}}
