@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # try something like
 
 from ConfigParser import SafeConfigParser

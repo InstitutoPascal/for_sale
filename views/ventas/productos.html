@@ -1,6 +1,5 @@
 {{extend 'layout.html'}}
 
-{{=BEAUTIFY(response._vars)}}
 {{for reg in registros: }}
 <form class="form-horizontal" action="{{=URL(c="ventas",f="carrito")}}" enctype="multipart/form-data" method="POST">
   <div class="col-xs-1 col-sm-1">
