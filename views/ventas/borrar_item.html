@@ -1,0 +1,16 @@
+{{extend 'layout.html'}}
+
+{{=BEAUTIFY(response._vars)}}
+
+<center>
+<br /><br /><br />
+<h1> <p class="text-center visible-lg bg-success">El Item se ha eliminado correctamente !  Gracias</p></h1>
+<h4> <p class="text-center visible-lg bg-success"></p>Falta redireccionar al carrito nuevamente</h4>
+<br />
+    <li><a href="{{=URL(c="productos",f="carrito")}}">Volver al carrito</a></li>
+
+</center>
+<head>
+
+</head>
+</div>
