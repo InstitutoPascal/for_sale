@@ -9,12 +9,9 @@ response.menu = [
     (T('Inicio'), False, URL('default', 'index'), [])
 ]
 
-
 # ----------------------------------------------------------------------------------------------------------------------
 # provide shortcuts for development. remove in production
 # ----------------------------------------------------------------------------------------------------------------------
-
-
 response.menu += [
             (T('Laboratorios'), False, URL('ventas','ventas_productos'), [
                 (T('Bagó'), False, URL('ventas', 'venta_productobago'),[]),
@@ -60,6 +57,10 @@ response.menu += [
                 (T('Locion'), False, URL('ventas', 'Locion'),[
 
         ])]
+
+
+
+
 DEVELOPMENT_MENU = True
 # ----------------------------------------------------------------------------------------------------------------------
 # provide shortcuts for development. remove in production

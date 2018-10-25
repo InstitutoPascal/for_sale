@@ -1,14 +1,76 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
 {{extend 'layout.html'}}
 
+
+<html>
+<body style="background-color:#BEBEBE;">
 {{block header}}
-<center style="background-color: #333; color:white; padding:30px">
-  <h1>/{{=request.application}}/{{=request.controller}}/{{=request.function}}
-</center>
+       <header class="container-fluid background">
+<img align="right" src="/for_sale/static/comprame.jpg" "Float, derecha" width="200" height="200"> 
+<div class="jumbotron text-center">
+        {{if response.title:}}
+        <h1>{{=response.title}}
+          <small>{{=response.subtitle or ''}}</small></h1>
+        {{pass}}
+      </div>
+        </header> 
 {{end}}
 
-{{if 'message' in globals():}}
-{{elif 'content' in globals():}}
-{{=content}}
-{{else:}}
-{{=BEAUTIFY(response._vars)}}
+{{block right_sidebar}}
+<div class="panel panel-info">
+  <div class="panel-heading"><h3 class="panel-title"><a class="btn-block"
+      href="{{=URL('default','index')}}">
+      <i class="glyphicon glyphicon-cog"></i>
+     <center> {{=T("For sale")}}</center>
+    </a></h3></div>
+  <div class="panel-body">
+    <B>{{=T("INGRESO A For sale")}}</B>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">{{=T('Si ya es usuario: ')}}{{=A(T("Ingresar"), _href=URL('default','user/login'))}}</li>
+    <li class="list-group-item">{{=T('Si aún no es usuario: ')}}{{=A(T("Registrarse"), _href=URL('default','user/register'))}}</li>
+  </ul>
+</div>
+{{end}}
+
+
+{{if not auth.user:}}
+{{right_sidebar_enabled=True}}
+<hr/>
+<h2><font color="#ffffff"><center>{{=message}}</center></font></h2>
+
+
+<U><p class="lead">{{=T('Usuarios que pueden ingresar al sistema')}}</p></U>
+<ol>
+  <UL><B><I>Clientes</B></I><BR> {{=T('Son quienes van a realizar compras de forma rapida y facil con un Click.')}}</UL>
+      <BR>
+  <UL><B><I>Vendedores</B></I><BR>  {{=T('Son los encargados de agregar, modificar y eliminar productos y precios del sistema).')}}</UL>
+      <BR>
+  <UL><B><I>Administradores</B></I><BR>  {{=T('Encargados de la configuración del sistema, determinando los usuarios del sistema y sus roles.')}}</UL>
+      <BR>
+</ol>
+
 {{pass}}
+<!--
+{{if auth.user:}}
+{{right_sidebar_enabled=False}}
+
+<H4>
+{{=T('BIENVENIDO, ')}} {{=auth.user.first_name}}<BR><BR>
+{{=T('Ingresaste a For sale sistema de ventas online.')}}
+    <BR>
+        
+{{=T('Ingrese según el rol que te corresponda:')}}
+<BR><P>
+<CENTER>
+<a href="{{=URL(r=request,c='default',f='principal_cliente')}}"> CLIENTE</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="{{=URL(r=request,c='default',f='principal_vendedoror')}}"> VENDEDOR</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="{{=URL(r=request,c='default',f='principal_administrador')}}"> ADMINISTRADOR</a>
+    
+    {{pass}}
+    -->
+</html>
+   </body>
+      </html>

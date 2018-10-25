@@ -29,16 +29,14 @@ response.google_analytics_id = None
 # this is the main application menu add/remove items as required
 # ----------------------------------------------------------------------------------------------------------------------
 
-response.menu_empleados = [
-    (T('Home'), False, URL('default', 'index'), [])
+response.menu = [
+    (T('For Sale'), False, URL('default', 'index'), [])
 ]
 
-response.menu_empleados+=[
-        (T('Altas'),False,'#',[
-            (T('Postulantes'),False,URL(request.application,'altas','altas_Postulantes'),[])
-                                ]
-         )
-                    ]
+
+# ----------------------------------------------------------------------------------------------------------------------
+# provide shortcuts for development. remove in production
+# ----------------------------------------------------------------------------------------------------------------------
 
 DEVELOPMENT_MENU = True
 

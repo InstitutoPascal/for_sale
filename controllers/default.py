@@ -6,30 +6,33 @@
 
 # ---- example index page ----
 def index():
-    response.flash = T("Hello World")
-    return dict(message=T('Welcome to web2py!'))
+    """
+    example action using the internationalization operator T and flash
+    rendered by views/default/index.html or views/generic.html
 
-# ---- API (example) -----
-@auth.requires_login()
-def api_get_user_email():
-    if not request.env.request_method == 'GET': raise HTTP(403)
-    return response.json({'status':'success', 'email':auth.user.email})
+    if you need a simple wiki simply replace the two lines below with:
+    return auth.wiki()
+    """
+    
+    nombre_rol='SIN ROL'  #ingresa sin rol
+    if auth.user_id:  #variable que contiene el id del usuario logueado
+        reg_id_grupo_del_logueado=db(auth.user.id==db.auth_membership.user_id).select(db.auth_membership.group_id)
+        id_grupo_del_logueado=reg_id_grupo_del_logueado[0].group_id  #esta variable contiene el id del grupo, es decir solo el número (limpiamos la variable anterior)
+        reg_nombre_rol=db(db.auth_group.id==id_grupo_del_logueado).select(db.auth_group.role)
+        nombre_rol=reg_nombre_rol[0].role #limpiamos variable anterior para que solo busque el rol (la palabra)
+        # se asigna un rol
+        
+        if nombre_rol=='Administrador':
+            redirect(URL('principal_administrador'))
+        elif nombre_rol=='vendedor':
+            redirect(URL('principal_vendedor'))
+        else:
+            redirect(URL('principal_cliente'))
 
-# ---- Smart Grid (example) -----
-@auth.requires_membership('admin') # can only be accessed by members of admin groupd
-def grid():
-    response.view = 'generic.html' # use a generic view
-    tablename = request.args(0)
-    if not tablename in db.tables: raise HTTP(403)
-    grid = SQLFORM.smartgrid(db[tablename], args=[tablename], deletable=False, editable=False)
-    return dict(grid=grid)
+    response.flash = T("For sale")
+    return dict(message=T('Bienvenido al Sistema de ventas online'))
 
-# ---- Embedded wiki (example) ----
-def wiki():
-    auth.wikimenu() # add the wiki to the menu
-    return auth.wiki() 
 
-# ---- Action for login/register/etc (required for auth) -----
 def user():
     """
     exposes:
@@ -48,7 +51,7 @@ def user():
     """
     return dict(form=auth())
 
-# ---- action to server uploaded static content (required) ---
+
 @cache.action()
 def download():
     """
@@ -56,3 +59,24 @@ def download():
     http://..../[app]/default/download/[filename]
     """
     return response.download(request, db)
+
+
+def call():
+    """
+    exposes services. for example:
+    http://..../[app]/default/call/jsonrpc
+    decorate with @services.jsonrpc the functions to expose
+    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
+    """
+    return service()
+
+def principal_cliente():
+    return dict ()
+
+@auth.requires_membership(role='Administrador')
+def principal_administrador():
+    return dict ()
+
+@auth.requires_membership(role='vendedor')
+def principal_vendedor():
+    return dict ()

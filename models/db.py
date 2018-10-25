@@ -120,7 +120,7 @@ response.meta.keywords = configuration.get('app.keywords')
 response.meta.generator = configuration.get('app.generator')
 
 # -------------------------------------------------------------------------
-# your http://google.com/analytics id                                      
+# your http://google.com/analytics id
 # -------------------------------------------------------------------------
 response.google_analytics_id = configuration.get('google.analytics_id')
 
@@ -155,22 +155,22 @@ if configuration.get('scheduler.enabled'):
 
 ##Clientes##
 db.define_table ('clientes',
-                 db.Field("id_clientes","id"),  #agregada by enrique
+                 db.Field("id_clientes","id"), 
                  db.Field ('codigo_cliente','integer'),
                  db.Field ('nombre','string'),
                  db.Field ('apellido','string'),
-                 db.Field ('email','string'),  #agregada by enrique
-                 db.Field ('dni','integer',unique=True),
-                 db.Field('cuil','string'),
-                 db.Field('genero', requires=IS_IN_SET(['Masculino', 'Femenino'])),
-                 db.Field('telefono','integer'),
-                 db.Field('direccion','string'),
-                 db.Field('localidad_cliente','string'),
-                 db.Field('tipo_categoria', requires=IS_IN_SET(['Resp. Inscr.','Monotributo'])),  #agregada by enrique
+                 db.Field ('email','string',label='E-mail'),
+                 db.Field ('dni','integer',unique=True,label='D.N.I.'),
+                 db.Field ('cuil','string'),
+                 db.Field ('genero', label='Género',requires=IS_IN_SET(['Masculino', 'Femenino'])),
+                 db.Field ('telefono','integer'),
+                 db.Field ('direccion','string'),
+                 db.Field ('localidad_cliente','string'),
+                 db.Field ('tipo_categoria', requires=IS_IN_SET(['Resp. Inscr.','Monotributo'])),  #agregada by enrique
                  db.Field ('provincia','string'),
-                 db.Field ('pais','string'),
-                 db.Field ('codigo_postal','integer'),
-                 db.Field('estado', requires=IS_IN_SET(['activo','inactivo'])),
+                 db.Field ('pais','string',label='pais'),
+                 db.Field ('codigo_postal','integer',label='Código Postal'),
+                 db.Field ('estado', requires=IS_IN_SET(['activo','inactivo'])),
                  db.Field ('observaciones','text')
                 )
 db.clientes.codigo_cliente.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres'),IS_NOT_IN_DB (db,db.clientes.codigo_cliente)
@@ -178,9 +178,6 @@ db.clientes.nombre.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_U
 db.clientes.apellido.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(30)
 db.clientes.dni.requires=IS_NOT_IN_DB (db,db.clientes.dni),IS_INT_IN_RANGE(2500000,100000000)
 db.clientes.telefono.requires=IS_LENGTH(12, error_message='Solo hasta 12 caracteres')
-#db.clientes.localidad_cliente.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(50),IS_IN_DB(db,'localidad.nombre_localidad','%(nombre_localidad)s')
-#db.clientes.direccion.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(20)
-#db.clientes.numero_calle.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres')
 db.clientes.provincia.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER()
 db.clientes.pais.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER()
 db.clientes.codigo_postal.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres')
@@ -199,3 +196,27 @@ db.define_table ('contacto',
                  db.Field('telefono','integer',label='Teléfono'),
                  db.Field ('mensaje','text')
                 )
+
+##Vendedor##
+db.define_table ('vendedor',
+                 db.Field ("id_vendedor","id"), 
+                 db.Field ('codigo_vendedor','integer'),
+                 db.Field ('nombre','string'),
+                 db.Field ('apellido','string'),
+                 db.Field ('email','string',label='E-mail'),
+                 db.Field ('dni','integer',unique=True,label='D.N.I.'),
+                 db.Field ('cuil','string'),
+                 db.Field ('genero', label='Género',requires=IS_IN_SET(['Masculino', 'Femenino'])),
+                 db.Field ('telefono','integer'),
+                 db.Field ('direccion','string'),
+                 db.Field ('localidad','string'),
+                 db.Field ('codigo_postal','integer',label='Código Postal'),
+                 db.Field ('observaciones','text')
+                )
+
+db.vendedor.codigo_vendedor.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres'),IS_NOT_IN_DB (db,db.vendedor.codigo_vendedor)
+db.vendedor.nombre.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(30)
+db.vendedor.apellido.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(30)
+db.vendedor.dni.requires=IS_NOT_IN_DB (db,db.vendedor.dni),IS_INT_IN_RANGE(2500000,100000000)
+db.vendedor.telefono.requires=IS_LENGTH(12, error_message='Solo hasta 12 caracteres')
+db.vendedor.codigo_postal.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres')

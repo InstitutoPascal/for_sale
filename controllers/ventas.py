@@ -2,6 +2,10 @@
 
 def venta_productos():
 
+    subtitulo=T('Ingrese el nombre del medicamento a buscar:')
+    tablaFinal=[]
+    i=0
+    form2=''
     # buscar todos los productos:
     condicion = db.productos.laboratorio
     campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
@@ -204,3 +208,13 @@ def productos():
 def cancelar_venta():
     del session["items_venta"]
     return dict()
+
+def nombres():
+    # buscar todos los productos:
+    condicion = db.productos.nombre
+    campos = db.productos.nombre, db.productos.id_producto, db.productos.descripcion, db.productos.precio
+    registros = db(condicion).select(*campos, orderby= db.productos.nombre)#ordenar alfabeticamente
+
+    # vista generica para pruebas:
+    #response.view = "generic.html"
+    return dict(registros=registros)

@@ -6,7 +6,7 @@
 # Customize your APP title, subtitle and menus here
 # ----------------------------------------------------------------------------------------------------------------------
 
-response.logo = A(B('SDP'), XML('&trade;&nbsp;'), # LOGO SDP
+response.logo = A(B('For sale'), XML('&trade;&nbsp;'), # LOGO SDP
                   _class="navbar-brand", _href="index",
                   _id="web2py-logo")
 response.title = request.application.replace('_', ' ').title()
@@ -29,66 +29,30 @@ response.google_analytics_id = None
 # this is the main application menu add/remove items as required
 # ----------------------------------------------------------------------------------------------------------------------
 
-response.menu_supervisor = [
-    (T('Home'), False, URL('default', 'index'), [])
+response.menu_vendedor = [
+    (T('For sale'), False, URL('default', 'principal_vendedor'), [])
 ]
 
 
-response.menu_supervisor += [
-    (T('Altas'), False, '#', [
-    
-            (T('Tipos de Empleo'), False,
-             URL('altas', 'altas_Categorias')),
+response.menu_vendedor += [
+            (T('agregar'), False,  URL('agregar', 'agregar_cliente'),[
+                (T('clientes'), False, URL('agregar', 'agregar_cliente'),[])
+        ])]
 
-            (T('Estudios'), False,
-             URL('altas', 'altas_Estudios')), 
-            
-            (T('Estudios por Empleo'), False,
-             URL('altas', 'altas_exe')), 
-            
-                            ])
-                ]
+response.menu_vendedor += [
+            (T('eliminar'), False, URL('bajas', 'borrar_cliente'),[
+                (T('clientes'), False, URL('bajas', 'borrar_cliente'),[])
+               
+        ])]
+               
 
-response.menu_supervisor += [
-    (T('Bajas'), False, '#', [
-    
-            (T('Tipos de Empleo'), False,
-             URL('bajas', 'listaCategorias')),
-
-            (T('Estudios'), False,
-             URL('bajas', 'listaEstudios')), 
-                            ])
-                ]
-
-response.menu_supervisor += [
-    (T('Modificaciones'), False, '#', [
-    
-            (T('Tipos de Empleo'), False,
-             URL('modificaciones', 'listaCategorias')),
-
-            (T('Estudios'), False,
-             URL('modificaciones', 'listaEstudios')), 
-                            ])
-                ]
-
-response.menu_supervisor += [
-    (T('Reportes'), False, '#', [
-    
-            (T('Tipos de Empleo'), False,
-             URL('reportes', 'listaCategorias')),
-
-            (T('Estudios'), False,
-             URL('reportes', 'estudios')), 
-            
-            (T('Estudios por Empleo'), False,
-             URL('reportes', 'listaempleos')), 
-            
-                            ])
-                ]
-
-
+response.menu_vendedor += [
+            (T('reportes'), False, URL('reportes','reportes_productos' ),[
+                (T('productos'), False, URL('reportes','reportes_productos' ),[]),
+                (T('clientes'), False, URL('reportes','reportes_clientes' ),[])
+              ])]
+                        
 DEVELOPMENT_MENU = True
-
 
 # ----------------------------------------------------------------------------------------------------------------------
 # provide shortcuts for development. remove in production
