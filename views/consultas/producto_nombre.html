@@ -1,0 +1,14 @@
+{{extend 'layout.html'}}
+<h1><b>Consulta de producto por el nombre</b></h1>
+
+<!--muestra 'listado por cliente' -->
+{{=subtitulo}}
+
+<!-- 'localidad' + campo + boton 'buscar' -->
+{{=form}}
+
+<!-- si cantidad de registro es mayor a cero  ('cant' variable de vista)-->
+{{if cant > 0:}}
+Los productos son:
+{{=tabla}}
+{{pass}}
