@@ -1,4 +1,4 @@
-{{extend 'layout_cliente.html'}}
+{{extend 'layout.html'}}
 
 <html>
 
@@ -12,15 +12,11 @@
      <I><h4>Hola, {{=auth.user.first_name}}.</h4>
 <h5>
 <br> <center>
-Estas a un click de  hacer todas tus <B>compras de medicamentos</b> de forma rapida y facil :</i> <a href="#" class="btn btn-success" role="button">Carrito</a>
+Estas a un click de  hacer todas tus <B>compras de medicamentos</b> de forma rapida y facil :</i><a	class="btn	btn-primary"	href='{{=URL(c="ventas",f="venta_productos")}}'	role="button">Carrito</a>
 <br></center>
-    
+  
 </h5>
-
-    
 <br> <br>
-     
-    
 <img align="right" src="/for_sale/static/bago.jpg" "Float, derecha" width="200" height="200"  style="position: absolute; top: 178px; right: 100px;" >
 <img align="center"src="/for_sale/static/bayer.jpg" "Float, centrado" width="200" height="200" style="position: absolute; top: 178px; left: 420px;"   >
 <img align="left" src="/for_sale/static/eleaa.jpg" "Float, izquierda" width="200" height="200"   >

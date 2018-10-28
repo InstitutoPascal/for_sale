@@ -36,13 +36,8 @@ response.menu_administrador = [
 response.menu_administrador += [
             (T('Agregar'), False, '#',[
                 (T('Vendedor'), False, URL('agregar', 'agregar_vendedor'),[]),
-               
-                ])]
+                (T('Cliente'), False, URL('agregar', 'agregar_cliente'),[])
 
-response.menu_administrador += [
-            (T('Eliminar'), False, '#',[
-                (T('Vendedor'), False, URL('eliminar', 'agregar_vendedor'),[]),
-               
                 ])]
 DEVELOPMENT_MENU = True
 

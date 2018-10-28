@@ -1,12 +1,10 @@
-{{left_sidebar_enabled,right_sidebar_enabled=False,('message' in globals())}}
 {{extend 'layout.html'}}
-
 
 <html>
 <body style="background-color:#BEBEBE;">
 {{block header}}
        <header class="container-fluid background">
-<img align="right" src="/for_sale/static/comprame.jpg" "Float, derecha" width="200" height="200"> 
+<img src="/for_sale/static/comprame.jpg"  width="200" height="200"> 
 <div class="jumbotron text-center">
         {{if response.title:}}
         <h1>{{=response.title}}
@@ -21,11 +19,8 @@
   <div class="panel-heading"><h3 class="panel-title"><a class="btn-block"
       href="{{=URL('default','index')}}">
       <i class="glyphicon glyphicon-cog"></i>
-     <center> {{=T("For sale")}}</center>
-    </a></h3></div>
-  <div class="panel-body">
-    <B>{{=T("INGRESO A For sale")}}</B>
-  </div>
+      </a></h3></div>
+  
   <ul class="list-group">
     <li class="list-group-item">{{=T('Si ya es usuario: ')}}{{=A(T("Ingresar"), _href=URL('default','user/login'))}}</li>
     <li class="list-group-item">{{=T('Si aún no es usuario: ')}}{{=A(T("Registrarse"), _href=URL('default','user/register'))}}</li>

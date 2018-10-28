@@ -30,28 +30,16 @@ response.google_analytics_id = None
 # ----------------------------------------------------------------------------------------------------------------------
 
 response.menu_vendedor = [
-    (T('For sale'), False, URL('default', 'principal_vendedor'), [])
+    (T('For sale'), False, URL('default', 'index'), [])
 ]
 
 
 response.menu_vendedor += [
-            (T('agregar'), False,  URL('agregar', 'agregar_cliente'),[
-                (T('clientes'), False, URL('agregar', 'agregar_cliente'),[])
-        ])]
+            (T('Agregar'), False, '#',[
+                (T('Vendedor'), False, URL('agregar', 'agregar_vendedor'),[]),
+                (T('Cliente'), False, URL('agregar', 'agregar_cliente'),[])
 
-response.menu_vendedor += [
-            (T('eliminar'), False, URL('bajas', 'borrar_cliente'),[
-                (T('clientes'), False, URL('bajas', 'borrar_cliente'),[])
-               
-        ])]
-               
-
-response.menu_vendedor += [
-            (T('reportes'), False, URL('reportes','reportes_productos' ),[
-                (T('productos'), False, URL('reportes','reportes_productos' ),[]),
-                (T('clientes'), False, URL('reportes','reportes_clientes' ),[])
-              ])]
-                        
+                ])]
 DEVELOPMENT_MENU = True
 
 # ----------------------------------------------------------------------------------------------------------------------

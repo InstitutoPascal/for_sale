@@ -29,7 +29,7 @@ def index():
         else:
             redirect(URL('principal_cliente'))
 
-    response.flash = T("For sale")
+    response.flash = T("For sale")    
     return dict(message=T('Bienvenido al Sistema de ventas online'))
 
 
@@ -73,7 +73,7 @@ def call():
 def principal_cliente():
     return dict ()
 
-@auth.requires_membership(role='Administrador')
+@auth.requires_membership(role='administrador')
 def principal_administrador():
     return dict ()
 
