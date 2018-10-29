@@ -1,13 +1,38 @@
 {{extend 'layout.html'}}
 
+<html>
+<head>
+<form action="miformulario.php" method="post" class="form-inline">
+    <input type="text" placeholder="Buscar" class="form-control mr-sm-2" />
+    <button class="btn btn-succes" type="submit">Buscar</button>
+</form></head> 
+<body>
+    
+<style>
+               body::after {
+                 content: "";
+                   background: url("{{=URL('static','/fondos/fondointerface.jpeg')}}");
+                 background-repeat:no-repeat;
+                 background-size: cover;
+                 background-attachment:fixed;
+                 opacity: 2;
+                 top: 0;
+                 left: 0;
+                 bottom: 0;
+                 right: 0;
+                 position: absolute;
+                 z-index: -2;
+               }
+            </style>
+<div class="row">
 {{for reg in registros: }}
-<form class="form-horizontal" action="{{=URL(c="ventas",f="carrito")}}" enctype="multipart/form-data" method="POST">
+<form class="form-horizontal" action='{{=URL(c="ventas",f="carrito")}}' enctype="multipart/form-data" method="POST">
   <div class="col-xs-1 col-sm-1">
     <div class="thumbnail">
-      <img class="img-responsive img-thumbnail" src="{{=URL(f='mostrar', args=[reg.id_producto])}}" style="max-height: 300px; max-width: 250px;" alt="...">
+      <img class="img-responsive img-thumbnail" src='{{=URL(f="mostrar", args=[reg.id_producto])}}' style="max-height: 300px; max-width: 200px;" alt="...">
       <div class="caption">
-        <h3>{{=reg.nombre}}</h3>
-        <p>{{=reg.precio}}</p>
+        <h6>{{=reg.nombre}}</h6>
+        <p>${{=reg.precio}}</p>
         <p>
             <input type="hidden" name="producto" value="{{=reg.id_producto}}" />
             <input type="number" name="cantidad" value="1" />
@@ -16,6 +41,6 @@
       </div>
     </div>
   </div>
-</div>
-</form>
+    </form>
 {{pass}}
+</div>

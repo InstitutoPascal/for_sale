@@ -30,7 +30,17 @@ response.google_analytics_id = None
 # ----------------------------------------------------------------------------------------------------------------------
 
 response.menu = [
-    (T('Inicio'), False, URL('default', 'index'), [])
+    (T('Filtrar por'), False, URL('default', 'index'), [])
+]
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# provide shortcuts for development. remove in production
+# ----------------------------------------------------------------------------------------------------------------------
+
+
+response.menu = [
+    (T('Filtrar por'), False, URL('default', 'index'), [])
 ]
 
 
@@ -49,41 +59,24 @@ response.menu += [
         ])]
 
 response.menu += [
-                (T('Ampolla'), False, URL('ventas', 'Ampolla'),[
+                (T('presentación'), False, '#',[
+                    (T('Ampolla'), False, URL('ventas', 'Ampolla'),[]),
+                    (T('Blister'), False, URL('ventas', 'Blister'),[]),
+                    (T('Crema'), False, URL('ventas', 'Crema'),[]),
+                    (T('Efervescente'), False, URL('ventas', 'Efervescente'),[]),
+                    (T('Gotas'), False, URL('ventas', 'Gotas'),[]),
+                    (T('Grag'), False, URL('ventas', 'Grag'),[]),
+                    (T('Jarabe'), False, URL('ventas', 'Jarabe'),[]),
+                    (T('Spray'), False, URL('ventas', 'Spray'),[]),
+                    (T('Locion'), False, URL('ventas', 'Locion'),[]),
         ])]
 response.menu += [
-
-                (T('Blister'), False, URL('ventas', 'Blister'),[
-
-        ])]
-response.menu += [
-                (T('Crema'), False, URL('ventas', 'Crema'),[
+                (T('Nombre'), False, '#' ,[
+                (T('productos'), False, URL('consultas', 'producto_nombre'),[]),
 
         ])]
-response.menu += [
-                (T('Efervescente'), False, URL('ventas', 'Efervescente'),[
 
-        ])]
-response.menu += [
-                (T('Gotas'), False, URL('ventas', 'Gotas'),[
 
-        ])]
-response.menu += [
-                (T('Grag'), False, URL('ventas', 'Grag'),[
-
-        ])]
-response.menu += [
-                (T('Jarabe'), False, URL('ventas', 'Jarabe'),[
-
-        ])]
-response.menu += [
-                (T('Spray'), False, URL('ventas', 'Spray'),[
-
-        ])]
-response.menu += [
-                (T('Locion'), False, URL('ventas', 'Locion'),[
-
-        ])]
 DEVELOPMENT_MENU = True
 
 # ----------------------------------------------------------------------------------------------------------------------

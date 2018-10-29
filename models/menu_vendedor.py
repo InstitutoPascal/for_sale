@@ -29,17 +29,30 @@ response.google_analytics_id = None
 # this is the main application menu add/remove items as required
 # ----------------------------------------------------------------------------------------------------------------------
 
-response.menu_vendedor = [
-    (T('For sale'), False, URL('default', 'index'), [])
-]
+if auth.has_membership(group_id='vendedor'):
+    response.menu = [
+        (T('Inicio'), False, URL('default', 'index'), [])
+    ]
 
 
-response.menu_vendedor += [
-            (T('Agregar'), False, '#',[
-                (T('Vendedor'), False, URL('agregar', 'agregar_vendedor'),[]),
-                (T('Cliente'), False, URL('agregar', 'agregar_cliente'),[])
+    response.menu += [
+                (T('Agregar'), False, '#',[
+                    (T('Vendedor'), False, URL('agregar', 'agregar_vendedor'),[]),
+                    (T('Medicamento'), False, URL('agregar', 'agregar_productos'),[]),
+                    (T('Cliente'), False, URL('agregar', 'agregar_cliente'),[])
+                    
 
-                ])]
+                    ])]
+    
+    
+    
+    response.menu += [
+                (T('Lista'), False, '#',[
+                    (T('Vendedores'), False, URL('consultas', 'reportes_vendedor'),[]),
+                    (T('Clientes'), False, URL('consultas', 'reportes_clientes'),[]),
+                    (T('Medicamentos'), False, URL('consultas', 'reportes_productos'),[]),
+                    ])]
+    
 DEVELOPMENT_MENU = True
 
 # ----------------------------------------------------------------------------------------------------------------------

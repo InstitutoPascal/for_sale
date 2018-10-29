@@ -6,6 +6,7 @@ def producto_nombre():
     tablaFinal=[]
     i=0
     form2=''
+
     form=FORM(TABLE(TR("",INPUT(_type="text",_name="nombre",requires=IS_NOT_EMPTY())),TR("",INPUT(_type="submit",_value="Buscar",_class="btn btn-primary"))))#construlle el formulario para la vista, submit (tipo boton)
     if form.accepts(request.vars,session):
         ### verifica si la carrera estÃ¡ en la base de datos
@@ -18,9 +19,9 @@ def producto_nombre():
             for x in listado:
                 i=i+1
             lista=[]
-            lista.append(TABLE(TR(TH('NOMBRE',_style='width:100px; color:#000; background: #99f; border: 2px solid #cdcdcd'),TH('PRECIO',_style='width:100px; color:#000; background: #99f; border: 2px solid #cdcdcd'),
-            *[TR(TD(x.nombre,_style='width:100px; color:#000; background: #eef; border: 2px solid #cdcdcd'),
-            TD(x.precio,_style='width:100px; color:#000; background: #eef; border: 2px solid #cdcdcd'),)
+            lista.append(TABLE(TR(TH('NOMBRE',_style='width:150px; color:#FF0000; background: #eef; border: 2px solid #cdcdcd'),TH('PRECIO',_style='width:150px; color:#FF0000 background: #eef; border: 2px solid #cdcdcd'),
+            *[TR(TD(x.nombre,_style='width:150px; color:#FF0000 background: #eef; border: 2px solid #cdcdcd'),
+            TD(x.precio,_style='width:150px; color:#FF0000 background: #eef; border: 2px solid #cdcdcd'),)
             for x in listado]),))
             tablaFinal = DIV(lista)
             
@@ -35,3 +36,18 @@ def producto_nombre():
        response.flash = 'Por favor, complete el Formulario'
 
     return dict(subtitulo=subtitulo, form=form, tabla=tablaFinal,cant=i,form2=form2)
+
+def reportes_productos():
+    subtitulo=T('Listado de Productos')
+    listado =db(db.productos).select(db.productos.ALL)
+    return dict(dc=listado)
+
+def reportes_clientes():
+    subtitulo=T('Listado de Clientes')
+    listado =db(db.clientes).select(db.clientes.ALL)
+    return dict(dc=listado)
+
+def reportes_vendedor():
+    subtitulo=T('Listado de Clientes')
+    listado =db(db.vendedor).select(db.vendedor.ALL)
+    return dict(dc=listado)
