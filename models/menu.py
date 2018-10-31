@@ -9,7 +9,9 @@ response.menu = [
     (T('Inicio'), False, URL('default', 'index'), [])
 ]
 
-
+response.menu += [
+    (T('Contactanos'), False, URL('productos', 'productos/contacto'), [])
+]
 # ----------------------------------------------------------------------------------------------------------------------
 # provide shortcuts for development. remove in production
 # ----------------------------------------------------------------------------------------------------------------------

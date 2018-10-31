@@ -11,17 +11,17 @@ def producto_nombre():
     if form.accepts(request.vars,session):
         ### verifica si la carrera estÃ¡ en la base de datos
         if db(db.productos.nombre==form.vars.nombre).count()==0: #este count cuenta los registros y si es == a 0 muestra el error
-            form.errors.codigo="El el nombre del medicamento no esta en la base de datos"
-            response.flash = 'El el nombre del medicamento no esta en la base de datos'
+            form.errors.codigo="El nombre del medicamento no esta en la base de datos"
+            response.flash = 'El nombre del medicamento no esta en la base de datos'
         else:
           
             listado =db(db.productos.nombre==form.vars.nombre).select(db.productos.ALL)
             for x in listado:
                 i=i+1
             lista=[]
-            lista.append(TABLE(TR(TH('NOMBRE',_style='width:150px; color:#FF0000; background: #eef; border: 2px solid #cdcdcd'),TH('PRECIO',_style='width:150px; color:#FF0000 background: #eef; border: 2px solid #cdcdcd'),
-            *[TR(TD(x.nombre,_style='width:150px; color:#FF0000 background: #eef; border: 2px solid #cdcdcd'),
-            TD(x.precio,_style='width:150px; color:#FF0000 background: #eef; border: 2px solid #cdcdcd'),)
+            lista.append(TABLE(TR(TH('NOMBRE',_style='width:250px; color:#FF0000;  border: 5px solid #cdcdcd'),TH('PRECIO',_style='width:250px; color:#FF0000 background: #eef; border: 5px solid #cdcdcd'),
+            *[TR(TD(x.nombre,_style='width:250px; color:#000; background: #eef; border: 4px solid #cdcdcd'),
+            TD(x.precio,_style='width:250px; color:#000; background: #eef; border: 4px solid #cdcdcd'),)
             for x in listado]),))
             tablaFinal = DIV(lista)
             

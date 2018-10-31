@@ -163,24 +163,23 @@ db.define_table ('clientes',
                  db.Field ('dni','integer',unique=True,label='D.N.I.'),
                  db.Field ('cuil','string'),
                  db.Field ('genero', label='Género',requires=IS_IN_SET(['Masculino', 'Femenino'])),
-                 db.Field ('telefono','integer'),
+                 db.Field ('telefono','integer',label='Teléfono'),
                  db.Field ('direccion','string'),
                  db.Field ('localidad_cliente','string'),
-                 db.Field ('tipo_categoria', requires=IS_IN_SET(['Resp. Inscr.','Monotributo'])),  #agregada by enrique
+                 db.Field ('tipo_categoria', requires=IS_IN_SET(['Resp. Inscr.','Monotributo'])),  
                  db.Field ('provincia','string'),
                  db.Field ('pais','string',label='pais'),
                  db.Field ('codigo_postal','integer',label='Código Postal'),
                  db.Field ('estado', requires=IS_IN_SET(['activo','inactivo'])),
                  db.Field ('observaciones','text')
                 )
-db.clientes.codigo_cliente.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres'),IS_NOT_IN_DB (db,db.clientes.codigo_cliente)
-db.clientes.nombre.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(30)
-db.clientes.apellido.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(30)
+
+db.clientes.email.requires=IS_NOT_EMPTY(error_message='***Campo obligatorio***'),IS_NOT_IN_DB (db,db.clientes.email)
+db.clientes.nombre.requires=IS_NOT_EMPTY(error_message='***Campo obligatorio***'),IS_UPPER(),IS_LENGTH(30)
+db.clientes.apellido.requires=IS_NOT_EMPTY(error_message='***Campo obligatorio***'),IS_UPPER(),IS_LENGTH(30)
 db.clientes.dni.requires=IS_NOT_IN_DB (db,db.clientes.dni),IS_INT_IN_RANGE(2500000,100000000)
 db.clientes.telefono.requires=IS_LENGTH(12, error_message='Solo hasta 12 caracteres')
-db.clientes.provincia.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER()
-db.clientes.pais.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER()
-db.clientes.codigo_postal.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres')
+
 
 
 #db.clientes.localidad_Cliente.requires=IS_IN_DB(db,db.localidad),'%(nombre_localidad)s'
@@ -189,13 +188,17 @@ db.clientes.codigo_postal.requires=IS_NOT_EMPTY(error_message='Campo obligatorio
 db.define_table ('contacto',
                  db.Field ('nombre','string'),
                  db.Field ('apellido','string'),
-                 db.Field ('dni','integer',label='D.N.I.',unique=True),
+                 db.Field ('dni','integer',label='D.N.I.'),
                  db.Field ('codigo_postal','integer',label='Código Postal'),
                  db.Field ('email','string',label='E-mail'),
                  db.Field('genero', label='Género',requires=IS_IN_SET(['Masculino', 'Femenino'])),
                  db.Field('telefono','integer',label='Teléfono'),
                  db.Field ('mensaje','text')
                 )
+db.contacto.email.requires=IS_NOT_EMPTY(error_message='***Campo obligatorio***'),IS_NOT_IN_DB (db,db.contacto.email)
+db.contacto.nombre.requires=IS_NOT_EMPTY(error_message='***Campo obligatorio***'),IS_UPPER(),IS_LENGTH(30)
+db.contacto.apellido.requires=IS_NOT_EMPTY(error_message='***Campo obligatorio***'),IS_UPPER(),IS_LENGTH(30)
+
 
 ##Vendedor##
 db.define_table ('vendedor',
@@ -207,16 +210,14 @@ db.define_table ('vendedor',
                  db.Field ('dni','integer',unique=True,label='D.N.I.'),
                  db.Field ('cuil','string'),
                  db.Field ('genero', label='Género',requires=IS_IN_SET(['Masculino', 'Femenino'])),
-                 db.Field ('telefono','integer'),
+                 db.Field ('telefono','integer',label='Teléfono'),
                  db.Field ('direccion','string'),
                  db.Field ('localidad','string'),
                  db.Field ('codigo_postal','integer',label='Código Postal'),
                  db.Field ('observaciones','text')
                 )
 
-db.vendedor.codigo_vendedor.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(4, error_message='Solo hasta 4 caracteres'),IS_NOT_IN_DB (db,db.vendedor.codigo_vendedor)
-db.vendedor.nombre.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(30)
-db.vendedor.apellido.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_UPPER(),IS_LENGTH(30)
+db.vendedor.nombre.requires=IS_NOT_EMPTY(error_message='***Campo obligatorio***'),IS_UPPER(),IS_LENGTH(30)
+db.vendedor.apellido.requires=IS_NOT_EMPTY(error_message='***Campo obligatorio***'),IS_UPPER(),IS_LENGTH(30)
 db.vendedor.dni.requires=IS_NOT_IN_DB (db,db.vendedor.dni),IS_INT_IN_RANGE(2500000,100000000)
 db.vendedor.telefono.requires=IS_LENGTH(12, error_message='Solo hasta 12 caracteres')
-db.vendedor.codigo_postal.requires=IS_NOT_EMPTY(error_message='Campo obligatorio'),IS_LENGTH(8, error_message='Solo hasta 8 caracteres')

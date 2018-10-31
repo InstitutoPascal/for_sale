@@ -1,14 +1,5 @@
 {{extend 'layout.html'}}
 
-
-<html>
-<head>
-<form action="miformulario.php" method="post" class="form-inline">
-    <input type="text" placeholder="Buscar" class="form-control mr-sm-2" />
-    <button class="btn btn-succes" type="submit">Buscar</button>
-</form></head> 
-<body>
-    
 <style>
                body::after {
                  content: "";
@@ -38,7 +29,7 @@
             <input type="hidden" name="producto" value="{{=reg.id_producto}}" />
             <input type="number" name="cantidad" value="1" />
             <input type="submit" role="button" class="btn btn-danger btn-lg" name="comprar" value="Comprar" />
-        </p>
+       </p>
       </div>
     </div>
   </div>

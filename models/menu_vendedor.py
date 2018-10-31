@@ -53,6 +53,8 @@ if auth.has_membership(group_id='vendedor'):
                     (T('Medicamentos'), False, URL('consultas', 'reportes_productos'),[]),
                     ])]
     
+    
+
 DEVELOPMENT_MENU = True
 
 # ----------------------------------------------------------------------------------------------------------------------

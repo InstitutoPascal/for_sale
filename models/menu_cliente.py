@@ -30,7 +30,7 @@ response.google_analytics_id = None
 # ----------------------------------------------------------------------------------------------------------------------
 
 response.menu = [
-    (T('Filtrar por'), False, URL('default', 'index'), [])
+    (T('Inicio'), False, URL('default', 'index'), [])
 ]
 
 
@@ -39,8 +39,8 @@ response.menu = [
 # ----------------------------------------------------------------------------------------------------------------------
 
 
-response.menu = [
-    (T('Filtrar por'), False, URL('default', 'index'), [])
+response.menu +=  [
+    (T('Filtrar por'), True, URL('default', 'index'), [])
 ]
 
 
@@ -76,7 +76,9 @@ response.menu += [
 
         ])]
 
-
+response.menu += [
+    (T('Contactanos'), False, URL('productos', 'contacto'), [])
+]
 DEVELOPMENT_MENU = True
 
 # ----------------------------------------------------------------------------------------------------------------------
